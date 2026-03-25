@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 
-RUN a2dismod mpm_event mpm_worker || true
-RUN a2enmod mpm_prefork
+RUN sed -i 's/^LoadModule mpm_event_module/# LoadModule mpm_event_module/' /etc/apache2/mods-enabled/*.conf || true
+RUN sed -i 's/^LoadModule mpm_worker_module/# LoadModule mpm_worker_module/' /etc/apache2/mods-enabled/*.conf || true
+RUN sed -i 's/^LoadModule mpm_prefork_module/LoadModule mpm_prefork_module/' /etc/apache2/mods-enabled/*.conf || true
 
 RUN a2enmod rewrite
 
