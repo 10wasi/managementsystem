@@ -6,7 +6,8 @@ RUN sed -i 's/^LoadModule mpm_prefork_module/LoadModule mpm_prefork_module/' /et
 
 RUN a2enmod rewrite
 
-RUN sed -ri 's!/var/www/>!/var/www/>\\n\\tAllowOverride All!g' /etc/apache2/apache2.conf
+RUN printf '<Directory /var/www/html>\n\tAllowOverride All\n</Directory>\n' > /etc/apache2/conf-available/allow-override.conf \
+    && a2enconf allow-override
 
 RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && rm -rf /var/lib/apt/lists/*
 
