@@ -14,19 +14,46 @@ $pageTitle = 'My Salary';
 include '../includes/header.php';
 ?>
 
-<div class="card">
-    <div class="card-header">
-        <h5>Salary Breakdown</h5>
+<div class="mb-3">
+    <h4 class="mb-0">💰 My Salary</h4>
+    <small class="text-muted">Salary breakdown</small>
+</div>
+
+<div class="card" style="max-width: 760px;">
+    <div class="card-header bg-white">
+        <h5 class="mb-0">Salary Breakdown</h5>
     </div>
     <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">Students Assigned: <?php echo $studentCount; ?> students</li>
-            <li class="list-group-item">Per Student Pay: Rs.<?php echo number_format($teacher['per_student_pay']); ?></li>
-            <li class="list-group-item">Base Salary (<?php echo $studentCount; ?> × Rs.<?php echo number_format($teacher['per_student_pay']); ?>): Rs.<?php echo number_format($base); ?></li>
-            <li class="list-group-item">Bonus: +Rs.<?php echo number_format($teacher['bonus']); ?></li>
-            <li class="list-group-item">Increment: +Rs.<?php echo number_format($teacher['increment']); ?></li>
-            <li class="list-group-item list-group-item-primary"><strong>Total Salary: Rs.<?php echo number_format($total); ?></strong></li>
-        </ul>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle mb-0">
+                <tbody>
+                    <tr>
+                        <td>Students Assigned</td>
+                        <td><span class="badge bg-info text-dark"><?php echo (int) $studentCount; ?> students</span></td>
+                    </tr>
+                    <tr>
+                        <td>Per Student Pay</td>
+                        <td>Rs.<?php echo number_format((float) $teacher['per_student_pay']); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Base Salary (<?php echo (int) $studentCount; ?> × Rs.<?php echo number_format((float) $teacher['per_student_pay']); ?>)</td>
+                        <td><strong>Rs.<?php echo number_format((float) $base); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td>Bonus</td>
+                        <td class="text-success"><strong>+Rs.<?php echo number_format((float) $teacher['bonus']); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td>Increment</td>
+                        <td class="text-success"><strong>+Rs.<?php echo number_format((float) $teacher['increment']); ?></strong></td>
+                    </tr>
+                    <tr class="table-light">
+                        <td><strong>🔥 Total Salary</strong></td>
+                        <td class="text-success"><strong>Rs.<?php echo number_format((float) $total); ?></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
