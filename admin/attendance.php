@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $students = fetchAll("SELECT u.id, u.name, s.grade FROM users u JOIN students s ON u.id = s.user_id WHERE u.role = 'student' ORDER BY u.name");
 
 // Get days in month
-$daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+$daysInMonth = (int) date('t', strtotime(sprintf('%04d-%02d-01', (int) $year, (int) $month)));
 $firstDayOfMonth = date('N', strtotime("$year-$month-01")); // 1=Monday, 7=Sunday
 // We'll use a simple table with columns for each day.
 

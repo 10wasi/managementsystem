@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$daysInMonth = cal_days_in_month(CAL_GREGORIAN, (int) $month, (int) $year);
+$daysInMonth = (int) date('t', strtotime(sprintf('%04d-%02d-01', (int) $year, (int) $month)));
 
 $pageTitle = 'My Students Attendance';
 include '../includes/header.php';

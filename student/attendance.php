@@ -8,7 +8,7 @@ $student_id = $_SESSION['user']['id'];
 $year = $_GET['year'] ?? date('Y');
 $month = $_GET['month'] ?? date('m');
 
-$daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+$daysInMonth = (int) date('t', strtotime(sprintf('%04d-%02d-01', (int) $year, (int) $month)));
 $attendance = [];
 for ($d = 1; $d <= $daysInMonth; $d++) {
     $date = "$year-$month-" . str_pad($d,2,'0',STR_PAD_LEFT);
