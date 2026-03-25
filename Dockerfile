@@ -7,6 +7,8 @@ RUN a2enmod rewrite
 
 RUN sed -ri 's!/var/www/>!/var/www/>\\n\\tAllowOverride All!g' /etc/apache2/apache2.conf
 
+RUN apt-get update && apt-get install -y sqlite3 libsqlite3-dev && rm -rf /var/lib/apt/lists/*
+
 RUN docker-php-ext-install pdo_sqlite
 
 COPY . /var/www/html/
