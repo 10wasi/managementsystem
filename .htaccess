@@ -1,0 +1,11 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# Protect SQLite database and SQL schema.
+<FilesMatch "\.(sqlite|sql)$">
+    Require all denied
+</FilesMatch>

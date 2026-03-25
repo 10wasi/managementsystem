@@ -1,0 +1,47 @@
+:root {
+    --theme-main: #1b1a5a;
+    --theme-main-soft: #23226a;
+    --theme-text-light: #f4f6ff;
+}
+
+/* Sidebar styles */
+.sidebar {
+    min-height: 100vh;
+    background-color: var(--theme-main) !important;
+}
+.sidebar .nav-link {
+    color: var(--theme-text-light);
+    border-radius: 8px;
+    margin: 2px 8px;
+}
+.sidebar .nav-link.active {
+    background-color: var(--theme-main-soft);
+    color: var(--theme-text-light);
+}
+.sidebar .nav-link:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--theme-text-light);
+}
+
+/* Card styling */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Attendance table */
+.table-bordered td, .table-bordered th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Print styles */
+@media print {
+    .sidebar, .btn, .nav, .card-header form {
+        display: none;
+    }
+    .col-md-9, .col-md-3 {
+        width: 100%;
+    }
+}
