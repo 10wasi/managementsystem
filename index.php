@@ -6,7 +6,7 @@ require_once __DIR__ . '/config.php';
 $counts = [
     'students' => (int) (fetchOne("SELECT COUNT(*) AS total FROM users WHERE role = 'student'")['total'] ?? 0),
     'teachers' => (int) (fetchOne("SELECT COUNT(*) AS total FROM users WHERE role = 'teacher'")['total'] ?? 0),
-    'classes' => (int) (fetchOne("SELECT COUNT(DISTINCT COALESCE(grade, class_name)) AS total FROM students")['total'] ?? 0),
+    'classes' => (int) (fetchOne("SELECT COUNT(DISTINCT grade) AS total FROM students WHERE grade IS NOT NULL AND grade <> ''")['total'] ?? 0),
 ];
 ?>
 <!DOCTYPE html>
