@@ -19,7 +19,14 @@ if (!defined('APP_NAME')) {
 function getDB() {
     static $db = null;
     if ($db === null) {
-        $db = new PDO('sqlite:' . ROOT_PATH . '/database/school.db');
+        // Check for PostgreSQL via DATABASE_URL (Railway Postgres provides this)
+        if (!empty($_ENV['DATABASE_URL']) || !empty(getenv('DATABASE_URL'))) {
+            $dbUrl = $_ENV['DATABASE_URL'] ?? getenv('DATABASE_URL');
+            $db = new PDO($dbUrl);
+        } else {
+            // Fall back to SQLite for local development
+            $db = new PDO('sqlite:' . ROOT_PATH . '/database/school.db');
+        }
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     return $db;
